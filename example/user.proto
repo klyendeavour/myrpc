@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+package user_proto;
+
+option cc_generic_services = true;
+//响应状态
+message ResponseState{
+    int32 errcode = 1;
+    bytes errmsg = 2;
+}
+//用户的信息
+message UserInfo{
+    uint32 uid = 1;
+    bytes name = 2;
+    uint32 age = 3;
+}
+//登录请求参数
+message LoginRequest{
+    bytes name = 1;
+    bytes pwd = 2;
+}
+//登录响应参数
+message LoginResponse{
+    ResponseState state = 1;
+    bool success = 2;
+}
+//查询某人的信息的请求参数
+message SearchRequest{
+    uint32 uid = 1;
+}
+message SearchResponse{
+    UserInfo userInfo = 1;
+    ResponseState state = 2;
+    bool success = 3;
+}
+
+service UserServiceRpc{
+    rpc Login(LoginRequest)returns(LoginResponse);
+    rpc Search(SearchRequest)returns(SearchResponse);
+}

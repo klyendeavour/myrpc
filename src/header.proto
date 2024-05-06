@@ -1,0 +1,9 @@
+syntax="proto3";
+
+package header_proto;
+
+message Header{
+    bytes service_name = 1;//服务对象的名字
+    bytes method_name = 2;//服务方法的名字
+    uint32 arg_size = 3; //参数的大小，防止tpc粘包
+}
