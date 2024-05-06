@@ -2,6 +2,7 @@
 set -x
 
 rm -rf `pwd`/build/*
+rm -rf `pwd`/lib/*
 cd `pwd`/build &&
         cmake ..&&
         make
